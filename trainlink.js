@@ -138,6 +138,10 @@ function trainlink() {
 		websocket.send(JSON.stringify({class: "cabFunction", cab: cab, func: func, state: state}));
 	}
 
+	function close(){
+		websocket.close();
+	}
+
 	trainlink.initiateTrainLink = initiateTrainLink;
 	trainlink.setSpeed = setSpeed;
 	trainlink.stopCab = stopCab;
@@ -145,4 +149,5 @@ function trainlink() {
 	trainlink.sendCommand = sendCommand;
 	trainlink.setPower = setPower;
 	trainlink.cabFunction = cabFunction;
+	trainlink.close = close;
 }
