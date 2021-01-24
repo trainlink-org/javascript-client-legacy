@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 function trainlink() {
-	function initiateTrainLink(ipAddress='192.168.1.158', port='6789') {
+	function initiateTrainLink(ipAddress='localhost', port='6789') {
 		/*	ipAddress: the ip address of the server */
 
 		console.log('Copyright (C) 2020  TrainLink Organisation (matt-hu)\n\
