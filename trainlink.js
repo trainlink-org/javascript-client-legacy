@@ -153,5 +153,6 @@ function trainlink() {
 	trainlink.sendCommand = sendCommand;
 	trainlink.setPower = setPower;
 	trainlink.cabFunction = cabFunction;
+	trainlink.setPointMotor = setPointMotor;
 	trainlink.close = close;
 }
