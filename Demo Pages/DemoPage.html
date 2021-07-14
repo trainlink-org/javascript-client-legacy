@@ -47,17 +47,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>
 		
 		<!-- Break buttons -->
 		<div class="breakContainer">
-			<button id="stopButton" onclick="trainlink.stopCab(activeCab)">Stop</button>
-			<button id="estopButton" onclick="trainlink.estopCab(activeCab)">Emergency Stop</button>
+			<button id="stopButton" onclick="trainlink.stopCab(activeCab); speedValue.innerHTML = 0; slider.value = 0">Stop</button>
+			<button id="estopButton" onclick="trainlink.estopCab(activeCab); speedVale.innerHTML = -1; slider.value = 0">Emergency Stop</button>
 		</div>
 		
 		<br>
 
 		<div>
-			<button id="F0" onclick="trainlink.cabFunction(activeCab, 0)">F0</button>
-			<button id="F1" onclick="trainlink.cabFunction(activeCab, 1)">F1</button>
-			<button id="F2" onclick="trainlink.cabFunction(activeCab, 2)">F2</button>
-			<button id="F3" onclick="trainlink.cabFunction(activeCab, 3)">F3</button>
+			<button id="F0" onclick="cabFunction(activeCab, 0); updateFnBtns()">F0</button>
+			<button id="F1" onclick="cabFunction(activeCab, 1); updateFnBtns()">F1</button>
+			<button id="F2" onclick="cabFunction(activeCab, 2); updateFnBtns()">F2</button>
+			<button id="F3" onclick="cabFunction(activeCab, 3); updateFnBtns()">F3</button>
 		</div>
 
 		<br>
@@ -108,6 +108,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>
 			/* deals with the slider changing */
 			slider.oninput = function (event) {
 				trainlink.setSpeed(activeCab,slider.value);
+				speedValue.innerHTML = slider.value;
 			}
 
 			/* 	The config function
@@ -237,6 +238,33 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>
 					f3.style.backgroundColor = ''
 				}
 			}
+
+            function updateFnBtns() {
+				if (cabFunctions[activeCab][0]) {
+					f0.style.backgroundColor = 'red'
+				} else {
+					f0.style.backgroundColor = ''
+				}
+				if (cabFunctions[activeCab][1]) {
+					f1.style.backgroundColor = 'red'
+				} else {
+					f1.style.backgroundColor = ''
+				}
+				if (cabFunctions[activeCab][2]) {
+					f2.style.backgroundColor = 'red'
+				} else {
+					f2.style.backgroundColor = ''
+				}
+				if (cabFunctions[activeCab][3]) {
+					f3.style.backgroundColor = 'red'
+				} else {
+					f3.style.backgroundColor = ''
+				}
+            }
+            function cabFunction(cab, func, state) {
+                trainlink.cabFunction(cab, func, state);
+                cabFunctions[activeCab][func] = !cabFunctions[activeCab][func]
+            }
 
 			function setPower() {
 				if (powerToggle.checked == true) {
